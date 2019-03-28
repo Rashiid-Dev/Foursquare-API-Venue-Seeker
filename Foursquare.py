@@ -1,5 +1,6 @@
 import json
 import requests
+import csv
 
 url = 'https://api.foursquare.com/v2/venues/explore'
 
@@ -14,12 +15,18 @@ params = dict(
     v='20180323',
     near=place,
     query=Query,
-    limit=1
+    limit=5
 )
 
 response = requests.get(url=url, params=params)
 data = json.loads(response.text)
-init = (data['response'])
-print(init[1])
+init = (data["response"])
+print(init)
+
+f = open("Venue Data.txt", 'w+')
+f.write(str(init))
+f.close()
+
+# print(init[1])
 # for items in data['response']:
 #     print(items)
